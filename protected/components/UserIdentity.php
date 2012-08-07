@@ -42,6 +42,7 @@ class UserIdentity extends CUserIdentity
                             $lastLogin = $member->last_login_time;
                             
                             $this->setState( 'lastLoginTime',  $lastLogin );
+                            $this->setState( 'name',  $member->name );
                             $this->errorCode = self::ERROR_NONE;
                         }
                     }
