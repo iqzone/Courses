@@ -266,9 +266,10 @@
 	
 </div> <!-- /footer -->
 
-<script src="<?php echo Yii::app()->theme->baseUrl; ?>/js/jquery.js"></script>
-<script src="<?php echo Yii::app()->theme->baseUrl; ?>/js/bootstrap.js"></script>
+<script src="<?php echo Yii::app()->baseUrl; ?>/js/jquery.js"></script>
+<script src="<?php echo Yii::app()->baseUrl; ?>/js/bootstrap.js"></script>
 <script src="<?php echo Yii::app()->theme->baseUrl; ?>/js/base.js"></script>
+<script src="<?php echo Yii::app()->baseUrl; ?>/js/require.js"></script>
 
 <script language="text/javascript">
 //<!--
