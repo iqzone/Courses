@@ -20,6 +20,7 @@
  */
 class Members extends CActiveRecord
 {
+        public $password = null;
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -46,10 +47,10 @@ class Members extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, username, pass_hash, pass_salt, created_at', 'required'),
+			array('name, username, password, pass_hash, pass_salt, created_at', 'required'),
 			array('block', 'numerical', 'integerOnly'=>true),
 			array('name, username', 'length', 'max'=>50),
-			array('pass_hash', 'length', 'max'=>60),
+			array('password, pass_hash', 'length', 'max'=>60),
 			array('pass_salt, ip_address', 'length', 'max'=>20),
 			array('updated_at, created_at, last_login_time', 'length', 'max'=>10),
 			// The following rule is used by search().
@@ -79,7 +80,7 @@ class Members extends CActiveRecord
 			'id' => 'ID',
 			'name' => 'Name',
 			'username' => 'Username',
-			'pass_hash' => 'Pass Hash',
+			'password' => 'Contraseña',
 			'pass_salt' => 'Pass Salt',
 			'updated_at' => 'Updated At',
 			'created_at' => 'Created At',
