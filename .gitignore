@@ -10,3 +10,4 @@ framework/
 demos/
 protected/config/*
 !protected/config/*.conf
+nbproject/
