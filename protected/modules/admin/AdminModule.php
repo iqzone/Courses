@@ -12,6 +12,9 @@ class AdminModule extends CWebModule
 			'admin.models.*',
 			'admin.components.*',
 		));
+                
+                //Set layout
+                Yii::app()->theme = 'courses/backend';
 	}
 
 	public function beforeControllerAction($controller, $action)
