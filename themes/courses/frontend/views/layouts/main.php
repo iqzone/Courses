@@ -32,7 +32,7 @@
 
             <div id="header">
                 <div class="container">
-                    <h1 id="title"><a href="<?php echo Yii::app()->request->baseUrl; ?>"><?php echo CHtml::encode($this->pageTitle) ?></a></h1>
+                    <h1 id="title"><a href="<?php echo CHtml::normalizeUrl( array( '/' ) ) ?>"><?php echo CHtml::encode($this->pageTitle) ?></a></h1>
                     <h1 id="suggest-course"><i></i><?php echo CHtml::link(Yii::t('global', 'put_course'), array('/courses/create')) ?></h1>
                 </div><!-- container -->
             </div><!-- header -->
