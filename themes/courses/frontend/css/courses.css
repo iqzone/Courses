@@ -1,0 +1,57 @@
+/* 
+    Document   : courses
+    Created on : 07-ago-2012, 17:45:39
+    Author     : juliobarreraa@gmail.com
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+
+#header h1#suggest-course { background: url(../images/put_course.png) no-repeat; position: absolute; top: -2px; right: 45px; width: 120px; height: 80px; }
+#header h1#suggest-course > i { background: url(../images/focus_green.png) no-repeat; display: block; height: 40px; width:23px; top: 15px; left: 15px;z-index: 1; position:absolute; }
+#header h1#suggest-course > a {color: #046; font:bold 14px 'Myriad Pro'; padding: 22px 5px 0 50px; word-break: break-all; }
+
+form.contact input[type="submit"], form.suscribe input[type="submit"]{float:right; width: auto;margin-right: 0px;}
+
+#categories div.item > div.graybar { height: 42px; margin-top: 10px;  }
+
+#categories div.item > div.graybar > i, #categories div.item > div.graybar h2 { background-position: 0px 0px no-repeat; float:left; height: 39px; }
+
+#categories div.item > div.graybar > i.left { background-image: url(../images/left_bar_gray.png);  width: 9px; }
+#categories div.item > div.graybar > h2 { padding: 10px 10px 0px 10px; background-image: url(../images/center_bar_gray.png); width: auto; min-width: 790px; height: 29px; color: #1B5C94; font: bold 16px 'Myriad Pro' }
+#categories div.item > div.graybar > i.right { background-image: url(../images/right_bar_gray.png); width: 10px; }
+
+#categories div.course-container { clear:both; margin-top: 15px; }
+
+#categories div.course-container h3 { background: url(../images/border_bottom_dashed_title_content.png) repeat-x bottom; padding-bottom: 15px; }
+#categories div.course-container h3 i.icon { background: url(../images/course-icons.png) no-repeat; width:50px; height:50px; display: block; float: left; margin-right: 5px; }
+
+#categories div.course-container h3 i.icon.hacking { background-position: -50px 0px; }
+#categories div.course-container h3 i.icon.programming { background-position: 0px 0px; }
+#categories div.course-container h3 i.icon.mobile { background-position: -100px 0px; }
+
+#categories div.course-container a {color: #000;}
+
+#categories div.course-item, #categories div.course-description { border: 1px dotted #CCC; padding: 10px; height: 163px; }
+
+#categories div.course-description { margin-left: 10px; }
+
+#categories div.course-description div.buttons-buy { text-align: right; }
+
+.show-comment-suggest { background: url(../images/comments.png) no-repeat; width: 40px; height: 34px; display:block; float: left; padding-left: 10px; }
+
+.follow { background: url(../images/group_social.png) no-repeat; width: 40px; height: 34px; display:block; float:left; margin-right: 10px; }
+
+.grid-0 > a.icons-tumblr { background: url(../images/tumblr.png) no-repeat; display:block; height: 39px;width: 40px; }
+.grid-0 > a.icons-facebook { background: url(../images/facebook.png) no-repeat; display:block; height: 39px;width: 40px; }
+.grid-0 > a.icons-twitter { background: url(../images/twitter.png) no-repeat; display:block; height: 39px;width: 40px; }
+
+.clear { clear: both; }
+
+div.divider-news { margin-top: 20px; margin-bottom:20px; background:url(../images/divider-news-networks.png) no-repeat -3px 0px; height:7px; }
+
+.suscribe-icon { background: url(../images/messages.png) no-repeat; width: 40px; height: 34px; display:block; float:left; margin-right: 10px; }

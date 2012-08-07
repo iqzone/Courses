@@ -18,6 +18,7 @@
 
         <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/main.css" />
         <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/form.css" />
+        <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/courses.css" />
 
         <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
         <!--[if lt IE 9]>
@@ -27,6 +28,12 @@
     </head>
 
     <body>
+        
+        <script type="text/javascript">
+            var its = {
+                vars: { baseURl: '<?php echo Yii::app()->baseUrl; ?>' }
+            };
+        </script>
 
         <div id="wrapper" class="clearfix">
 
@@ -160,10 +167,6 @@
         <!-- Le javascript
         ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->
-        <script src="<?php echo Yii::app()->baseUrl; ?>/js/jquery.js"></script>
-        <script src="<?php echo Yii::app()->baseUrl; ?>/js/bootstrap.js"></script>
-        <script src="<?php echo Yii::app()->theme->baseUrl; ?>/js/focus.js"></script>
-        <script src="<?php echo Yii::app()->baseUrl; ?>/js/require.js"></script>
-
+        <script data-main="<?php echo Yii::app()->theme->baseUrl; ?>/js/main" src="<?php echo Yii::app()->baseUrl; ?>/js/require.js"></script>
     </body>
 </html>
