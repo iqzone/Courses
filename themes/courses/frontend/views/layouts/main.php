@@ -160,9 +160,10 @@
         <!-- Le javascript
         ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->
-        <script src="<?php echo Yii::app()->theme->baseUrl; ?>/js/jquery.js"></script>
-        <script src="<?php echo Yii::app()->theme->baseUrl; ?>/js/bootstrap.js"></script>
+        <script src="<?php echo Yii::app()->baseUrl; ?>/js/jquery.js"></script>
+        <script src="<?php echo Yii::app()->baseUrl; ?>/js/bootstrap.js"></script>
         <script src="<?php echo Yii::app()->theme->baseUrl; ?>/js/focus.js"></script>
+        <script src="<?php echo Yii::app()->baseUrl; ?>/js/require.js"></script>
 
     </body>
 </html>
