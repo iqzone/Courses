@@ -125,11 +125,18 @@ class Members extends CActiveRecord
         
         public function beforeValidate() {
             
-            if( $this->isNewRecord )
+            if( $this->isNewRecord && $this->password !== null )
             {
-                $this->pass_salt =  base_convert(mt_rand(), 10, 36);
-                $this->pass_hash = md5( md5( $this->pass_hash ) . md5( $this->pass_salt ) );
                 $this->created_at = time();
+            }
+            else
+            {
+                $this->updated_at = time();
+            }
+            
+            if( $this->password !== null )
+            {
+                $this->generatePassword();
             }
             
             
@@ -145,9 +152,19 @@ class Members extends CActiveRecord
                 {
                     $this->block = 0;
                     $this->save();
+                    
+                    return false;
                 }
+                
+                return true;
             }
             
-            return true;
+            return false;
+        }
+        
+        public function generatePassword()
+        {
+                $this->pass_salt =  base_convert(mt_rand(), 10, 36);
+                $this->pass_hash = md5( md5( $this->password ) . md5( $this->pass_salt ) );
         }
 }
