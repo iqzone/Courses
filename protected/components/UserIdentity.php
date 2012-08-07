@@ -8,6 +8,9 @@
 class UserIdentity extends CUserIdentity
 {
         private $_id;
+        
+        const ERROR_ACCOUNT_BLOCK = 4;
+        
 	/**
 	 * Authenticates a user.
 	 * The example implementation makes sure if the username and password
@@ -23,6 +26,10 @@ class UserIdentity extends CUserIdentity
 		if( $member === null )
                 {
                     $this->errorCode = self::ERROR_USERNAME_INVALID;
+                }
+                elseif( $member->isLock() )
+                {
+                    $this->errorCode = self::ERROR_ACCOUNT_BLOCK;
                 }
                 else
                 {

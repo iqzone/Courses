@@ -12,6 +12,8 @@
  * @property string $updated_at
  * @property string $created_at
  * @property string $last_login_time
+ * @property string $ip_address
+ * @property integer $block
  *
  * The followings are the available model relations:
  * @property CourseUserRole[] $courseUserRoles
@@ -45,13 +47,14 @@ class Members extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('name, username, pass_hash, pass_salt, created_at', 'required'),
+			array('block', 'numerical', 'integerOnly'=>true),
 			array('name, username', 'length', 'max'=>50),
 			array('pass_hash', 'length', 'max'=>60),
-			array('pass_salt', 'length', 'max'=>20),
+			array('pass_salt, ip_address', 'length', 'max'=>20),
 			array('updated_at, created_at, last_login_time', 'length', 'max'=>10),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, name, username, pass_hash, pass_salt, updated_at, created_at, last_login_time', 'safe', 'on'=>'search'),
+			array('id, name, username, pass_hash, pass_salt, updated_at, created_at, last_login_time, ip_address, block', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -81,6 +84,8 @@ class Members extends CActiveRecord
 			'updated_at' => 'Updated At',
 			'created_at' => 'Created At',
 			'last_login_time' => 'Last Login Time',
+			'ip_address' => 'Ip Address',
+			'block' => 'Block',
 		);
 	}
 
@@ -103,11 +108,14 @@ class Members extends CActiveRecord
 		$criteria->compare('updated_at',$this->updated_at,true);
 		$criteria->compare('created_at',$this->created_at,true);
 		$criteria->compare('last_login_time',$this->last_login_time,true);
+		$criteria->compare('ip_address',$this->ip_address,true);
+		$criteria->compare('block',$this->block);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
 	}
+        
         
         public function encrypt( $password )
         {
@@ -115,11 +123,30 @@ class Members extends CActiveRecord
         }
         
         public function beforeValidate() {
-            $this->pass_salt =  base_convert(mt_rand(), 10, 36);
-            $this->pass_hash = md5( md5( $this->pass_hash ) . md5( $this->pass_salt ) );
             
-            $this->created_at = time();
+            if( $this->isNewRecord )
+            {
+                $this->pass_salt =  base_convert(mt_rand(), 10, 36);
+                $this->pass_hash = md5( md5( $this->pass_hash ) . md5( $this->pass_salt ) );
+                $this->created_at = time();
+            }
+            
             
             return parent::beforeValidate();
+        }
+        
+        public function isLock()
+        {
+            if( $this->block >= 3 )
+            {
+                //Si esta bloqueada pero a pasado más de 10 minutos desde el último bloqueo, automáticamente se desbloquea
+                if( time() > strtotime( '30 minutes', $this->last_login_time ) )
+                {
+                    $this->block = 0;
+                    $this->save();
+                }
+            }
+            
+            return true;
         }
 }
