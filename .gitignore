@@ -11,3 +11,4 @@ demos/
 protected/config/*
 !protected/config/*.conf
 nbproject/
+*.DS_Store*

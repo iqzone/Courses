@@ -1,61 +1,168 @@
 <?php /* @var $this Controller */ ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="language" content="en" />
+<!DOCTYPE HTML>
+<html>
+    <head>
 
-	<!-- blueprint CSS framework -->
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/screen.css" media="screen, projection" />
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/print.css" media="print" />
-	<!--[if lt IE 8]>
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/ie.css" media="screen, projection" />
-	<![endif]-->
+        <title><?php echo CHtml::encode($this->pageTitle); ?></title>
 
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/main.css" />
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/form.css" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="language" content="en" />
 
-	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
-</head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
 
-<body>
+        <link href="<?php echo Yii::app()->theme->baseUrl; ?>/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="<?php echo Yii::app()->theme->baseUrl; ?>/css/focus.css" rel="stylesheet" />
+        <link href="<?php echo Yii::app()->theme->baseUrl; ?>/css/focus-responsive.css" rel="stylesheet" />
+        <link href="<?php echo Yii::app()->theme->baseUrl; ?>/css/pages/homepage.css" rel="stylesheet" />
 
-<div class="container" id="page">
+        <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/main.css" />
+        <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/form.css" />
 
-	<div id="header">
-		<div id="logo"><?php echo CHtml::encode(Yii::app()->name); ?></div>
-	</div><!-- header -->
+        <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+
+    </head>
+
+    <body>
+
+        <div id="wrapper" class="clearfix">
+
+            <div id="header">
+                <div class="container">
+                    <h1 id="title"><a href="<?php echo Yii::app()->request->baseUrl; ?>"><?php echo CHtml::encode($this->pageTitle) ?></a></h1>
+                    <h1 id="suggest-course"><i></i><?php echo CHtml::link(Yii::t('global', 'put_course'), array('/courses/create')) ?></h1>
+                </div><!-- container -->
+            </div><!-- header -->
+
+            <div id="nav" class="clearfix">
+                <div class="container">
+                    <?php
+                    $this->widget('CMenuTheme', array(
+                        'items' => array(
+                            array('label' => Yii::t('global', 'homepage'), 'url' => array('/')),
+                            array('label' => Yii::t('global', 'courses'), 'url' => array('/courses')),
+                            array('label' => Yii::t('global', 'workshops'), 'url' => array('/workshops')),
+                            array('label' => Yii::t('global', 'faq'), 'url' => array('/help')),
+                            array('label' => Yii::t('global', 'contact'), 'url' => array('/contact')),
+                            array('label' => Yii::t('global', 'login'), 'url' => array('/site/login'), 'visible' => Yii::app()->user->isGuest),
+                            array('label' => Yii::t('global', 'logout', array( '{user}' => Yii::app()->user->name )), 'url' => array('/site/logout'), 'visible' => !Yii::app()->user->isGuest)
+                        ),
+                        'htmlOptions'     =>  array( 'id' => 'main-nav' ),
+                    ));
+                    ?>
+                </div><!-- /container -->
+            </div> <!-- /nav -->
+            <?php if (isset($this->breadcrumbs)): ?>
+                <?php
+                $this->widget('zii.widgets.CBreadcrumbs', array(
+                    'links' => $this->breadcrumbs,
+                ));
+                ?><!-- /breadcrumbs -->
+            <?php endif ?>
+
+            <div id="content">
+                <div class="container">
+                    <?php echo $content; ?>
+                </div> <!-- /container -->
+            </div> <!-- /content -->
+
+
+            <div class="content-footer">
+                <div class="logo"><div class="image"><a href="<?php echo CHtml::normalizeUrl(array('/site/index')) ?>"></a></div></div>
+            </div><!-- /content-footer -->
+            <div id="footer">
+
+                <div class="container">
+
+                    <div class="row">
+
+                        <div class="grid-6">
+                            <h3 style="margin-bottom: 0.1em"><b class="show-comment-suggest"></b>¿Necesitas algo más?, contáctanos</h3>
+
+                            <div style='padding-left:60px;'>
+                                <p>Estamos para servirte, dejanos tus datos y en breve nos pondremos en contácto contigo.</p>
+                                <form class="contact">
+                                    <input type="text" placeholder="Nombre" />
+                                    <input type="text" placeholder="Correo@dominio.com" />
+                                    <textarea placeholder="Duda o comentario" class="no-resize"></textarea><br />
+                                    <input type='submit' class="btn btn-inverse" style="margin-right: 59px;" value="Enviar" />
+                                </form>
+                            </div>
+
+                        </div> <!-- /grid-6 -->
+
+                        <div class="grid-4" style="float:right;">
+
+                            <h3><span class="follow"></span> Siguenos en:</h3>
+
+                            <div style='padding-left:50px;'>
+                                <div class="grid-0"><a href="" class='icons-tumblr'></a></div>
+                                <div class="grid-0"><a href="<?php echo CHtml::normalizeUrl(Yii::app()->params->networks['facebook']) ?>" alt="<?php echo Yii::t('global', 'facebook') ?>" class='icons-facebook'></a></div>
+                                <div class="grid-0"><a href="<?php echo CHtml::normalizeUrl(Yii::app()->params->networks['twitter']) ?>" alt="<?php echo Yii::t('global', 'twitter') ?>" class='icons-twitter'></a></div>
+                            </div>
+                            <br class="clear" />
+                            <div class="divider-news"></div>
+                            <h3><span class="suscribe-icon"></span> <?php echo Yii::t('global', 'suscribe') ?></h3>
+
+                            <div style='padding-left:50px;'>
+                                <form class="suscribe">
+
+                                    <input type="text" name="subscribe_email" placeholder="correo@dominio" style="width:205px;">
+                                    <br />
+                                    <input type="submit" class="btn btn-inverse" value="Suscribete" />
+                                </form>
+                            </div>
+
+
+                        </div><!-- /grid-6 -->
+
+
+                    </div> <!-- /row -->
+
+                </div> <!-- /container -->
+
+            </div> <!-- /footer -->
+
+
+
+            <div id="copyright">
+
+                <div class="container">
+
+                    <div class="row">
+
+                        <div id="rights" class="grid-6">
+                            <?php echo sprintf(Yii::t('global', 'copyright'), date('Y')) ?>
+                        </div> <!-- /grid-6 -->
+
+                        <div id="totop" class="grid-6">
+                            <?php echo sprintf(Yii::t('global', 'owner')) ?>
+                        </div> <!-- /grid-6 -->
+                        <div id="legal" class="grid-6">
+                            <ul>
+                                <li><?php echo CHtml::link(Yii::t('global', 'licence'), array('/licence')) ?></li>
+                                <li><?php echo CHtml::link(Yii::t('global', 'tos'), array('/tos')) ?></li>
+                                <li><?php echo CHtml::link(Yii::t('global', 'pop'), array('/pop')) ?></li>
+                            </ul>
+                        </div> <!-- /grid-6 -->
+
+                    </div> <!-- /row -->
+
+                </div> <!-- /container -->
+
+            </div> <!-- /copyright -->
+
+        </div><!-- page -->
         
-        <h1>Frontend</h1>
+        <!-- Le javascript
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="<?php echo Yii::app()->theme->baseUrl; ?>/js/jquery.js"></script>
+        <script src="<?php echo Yii::app()->theme->baseUrl; ?>/js/bootstrap.js"></script>
+        <script src="<?php echo Yii::app()->theme->baseUrl; ?>/js/focus.js"></script>
 
-	<div id="mainmenu">
-		<?php $this->widget('zii.widgets.CMenu',array(
-			'items'=>array(
-				array('label'=>'Home', 'url'=>array('/site/index')),
-				array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
-				array('label'=>'Contact', 'url'=>array('/site/contact')),
-				array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
-				array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
-			),
-		)); ?>
-	</div><!-- mainmenu -->
-	<?php if(isset($this->breadcrumbs)):?>
-		<?php $this->widget('zii.widgets.CBreadcrumbs', array(
-			'links'=>$this->breadcrumbs,
-		)); ?><!-- breadcrumbs -->
-	<?php endif?>
-
-	<?php echo $content; ?>
-
-	<div class="clear"></div>
-
-	<div id="footer">
-		Copyright &copy; <?php echo date('Y'); ?> by My Company.<br/>
-		All Rights Reserved.<br/>
-		<?php echo Yii::powered(); ?>
-	</div><!-- footer -->
-
-</div><!-- page -->
-
-</body>
+    </body>
 </html>
