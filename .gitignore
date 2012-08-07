@@ -3,3 +3,10 @@ assets/*
 protected/runtime/*
 !protected/runtime/.gitignore
 protected/data/*.db
+index-test.php
+index.php
+requirements
+framework/
+demos/
+protected/config/*
+!protected/config/*.conf
