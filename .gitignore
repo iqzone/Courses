@@ -5,7 +5,11 @@ protected/runtime/*
 protected/data/*.db
 /index-test.php
 /index.php
+<<<<<<< HEAD
 requirements/
+=======
+requirements
+>>>>>>> Roles
 framework/
 demos/
 protected/config/*
