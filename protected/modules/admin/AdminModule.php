@@ -15,6 +15,17 @@ class AdminModule extends CWebModule
                 
                 //Set layout
                 Yii::app()->theme = 'courses/backend';
+                Yii::app()->setComponents(array(
+                                            'errorHandler'=>array(
+                                                    // use 'site/error' action to display errors
+                                                    'errorAction'=>'admin/default/error',
+                                            ),
+                                            'user'               =>array
+                                            (
+                                                'loginUrl'       =>array('admin/default/login'),
+                                            ),
+                ));
+                
 	}
 
 	public function beforeControllerAction($controller, $action)

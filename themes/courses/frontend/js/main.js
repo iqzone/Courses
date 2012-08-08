@@ -4,7 +4,6 @@ require.config({
 
 define(['jquery', 'bootstrap', 'focus'], function($) {
     $().ready(function(){
-        $('#masthead-carousel').carousel ({ interval: false });
     });
 });
 
