@@ -6,10 +6,14 @@ protected/data/*.db
 /index-test.php
 /index.php
 <<<<<<< HEAD
+<<<<<<< HEAD
 requirements/
 =======
 requirements
 >>>>>>> Roles
+=======
+requirements/
+>>>>>>> ValidarAcceso
 framework/
 demos/
 protected/config/*
