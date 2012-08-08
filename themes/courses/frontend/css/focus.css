@@ -203,9 +203,9 @@ input {
 	
 	border-bottom: 1px dotted #fff;
         
-        text-shadow: 1px 1px 2px #fcc;
-            -moz-text-shadow: 1px 1px 2px #f8A;
-                -webkit-text-shadow: 1px 1px 2px #f8A;
+        text-shadow: 1px 1px 2px #FFFEFE;
+            -moz-text-shadow: 1px 1px 2px #FFFEFE;
+                -webkit-text-shadow: 1px 1px 2px #FFFEFE;
 }
 
 #nav .container > #main-nav > li > a > .caret {

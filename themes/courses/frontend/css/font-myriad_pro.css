@@ -12,5 +12,6 @@ root {
 
 @font-face {
     font-family: "Myriad Pro";
-    src: url(../MyriadPro-Bold.otf) format("opentype");
+    src: url(../font/MyriadPro-Bold.otf) format("opentype");
+    src: url('../font/MyriadPro-Bold.eot') format('embedded-opentype'), url('../font/MyriadPro-Bold.ttf') format('truetype'), url('../font/MyriadPro-Bold.svg') format('svg');
 }
