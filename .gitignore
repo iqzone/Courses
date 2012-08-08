@@ -3,8 +3,8 @@ assets/*
 protected/runtime/*
 !protected/runtime/.gitignore
 protected/data/*.db
-index-test.php
-index.php
+/index-test.php
+/index.php
 requirements
 framework/
 demos/
