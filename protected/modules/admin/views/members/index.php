@@ -1,20 +1,20 @@
 <?php
+/* @var $this MembersController */
+/* @var $dataProvider CActiveDataProvider */
 
-/**
- * <pre>
- * Codebit.org
- * IP.Board v3.3.0
- * @description
- * Last Updated: $Date: 07-ago-2012 -006  $
- * </pre>
- * @filename            index.php
- * @author 		$Author: juliobarreraa@gmail.com $
- * @package		PRI
- * @subpackage	        
- * @link		http://www.codebit.org
- * @since		07-ago-2012
- * @timestamp           21:59:55
- * @version		$Rev:  $
- *
- */
+$this->breadcrumbs=array(
+	'Members',
+);
+
+$this->menu=array(
+	array('label'=>'Create Members', 'url'=>array('create')),
+	array('label'=>'Manage Members', 'url'=>array('admin')),
+);
 ?>
+
+<h1>Members</h1>
+
+<?php $this->widget('zii.widgets.CListView', array(
+	'dataProvider'=>$dataProvider,
+	'itemView'=>'_view',
+)); ?>
