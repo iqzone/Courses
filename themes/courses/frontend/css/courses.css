@@ -11,9 +11,9 @@ root {
 }
 
 
-#header h1#suggest-course { background: url(../images/put_course.png) no-repeat; position: absolute; top: -2px; right: 45px; width: 120px; height: 80px; }
+#header h1#suggest-course { background: url(../images/put_course.png) no-repeat; position: absolute; top: -4px; right: 45px; width: 130px; height: 87px; }
 #header h1#suggest-course > i { background: url(../images/focus_green.png) no-repeat; display: block; height: 40px; width:23px; top: 15px; left: 15px;z-index: 1; position:absolute; }
-#header h1#suggest-course > a {color: #046; font:bold 14px 'Myriad Pro'; padding: 22px 5px 0 50px; word-break: break-all; }
+#header h1#suggest-course > a {color: #185D92; font:bold 12px 'Myriad Pro'; margin-left: 42px; margin-right: 20px; padding: 22px 5px 8px 7px; word-break: break-all; background: url(../images/border_bottom_put_course.png) repeat-x bottom; }
 
 form.contact input[type="submit"], form.suscribe input[type="submit"]{float:right; width: auto;margin-right: 0px;}
 
