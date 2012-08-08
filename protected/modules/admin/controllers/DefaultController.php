@@ -25,6 +25,10 @@ class DefaultController extends Controller
 				'actions'=>array('index'),
 				'roles'=>array('administrator'),
 			),
+                        array('allow',
+                                'actions' => array( 'login' ),
+                                'users'   => array( '?' ),
+                             ),
 			array('deny',  // deny all users
 				'users'=>array('*'),
 			),
