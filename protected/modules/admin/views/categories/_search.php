@@ -26,6 +26,11 @@
 		<?php echo $form->textField($model,'description',array('size'=>60,'maxlength'=>140)); ?>
 	</div>
 
+	<div class="row">
+		<?php echo $form->label($model,'enabled'); ?>
+		<?php echo $form->textField($model,'enabled'); ?>
+	</div>
+
 	<div class="row buttons">
 		<?php echo CHtml::submitButton('Search'); ?>
 	</div>

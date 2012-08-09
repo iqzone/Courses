@@ -7,6 +7,7 @@
  * @property string $id
  * @property string $name
  * @property string $description
+ * @property integer $enabled
  *
  * The followings are the available model relations:
  * @property Courses[] $courses
@@ -40,11 +41,12 @@ class Categories extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('name, description', 'required'),
+			array('enabled', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>50),
 			array('description', 'length', 'max'=>140),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, name, description', 'safe', 'on'=>'search'),
+			array('id, name, description, enabled', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -69,6 +71,7 @@ class Categories extends CActiveRecord
 			'id' => 'ID',
 			'name' => 'Name',
 			'description' => 'Description',
+			'enabled' => 'Enabled',
 		);
 	}
 
@@ -86,6 +89,7 @@ class Categories extends CActiveRecord
 		$criteria->compare('id',$this->id,true);
 		$criteria->compare('name',$this->name,true);
 		$criteria->compare('description',$this->description,true);
+		$criteria->compare('enabled',$this->enabled);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
