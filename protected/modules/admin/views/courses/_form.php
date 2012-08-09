@@ -14,10 +14,9 @@
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
 
 	<?php echo $form->errorSummary($model); ?>
-
 	<div class="row">
 		<?php echo $form->labelEx($model,'category_id'); ?>
-		<?php echo $form->textField($model,'category_id',array('size'=>11,'maxlength'=>11)); ?>
+		<?php echo $form->dropDownList($model,'category_id', CHtml::listData($model->getCategories(), 'id', 'name'), array('size'=>11,'maxlength'=>11)); ?>
 		<?php echo $form->error($model,'category_id'); ?>
 	</div>
 
@@ -41,7 +40,7 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'payforms'); ?>
-		<?php echo CHtml::activeCheckBoxList($model,'payforms', CHtml::listData($model->getPayForms(), '', ''), array('size'=>50,'maxlength'=>50)); ?>
+		<?php echo CHtml::activeCheckBoxList($model,'payforms', CHtml::listData($model->getPayForms(), 'id', 'name'), array('size'=>50,'maxlength'=>50)); ?>
 		<?php echo $form->error($model,'payforms'); ?>
 	</div>
 

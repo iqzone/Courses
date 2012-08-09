@@ -129,6 +129,8 @@ class Courses extends CActiveRecord
                 $this->updated_at = time();
             }
             
+            $this->payforms = serialize($this->payforms); //Serializamos los datos obtenidos
+            
             return parent::beforeValidate();
         }
         
@@ -138,6 +140,24 @@ class Courses extends CActiveRecord
                 $this->enabled = true;
             }
             parent::init();
+        }
+        
+        public function getPayForms()
+        {
+            return Payforms::model()->findAll( array( 
+                                                    'select' => array( 'id', 'name' ),
+                                                    'condition'  => 'enabled = true', //Filtro para mostrar solo tipos de pagos habilitados
+                                               )
+                    );
+        }
+        
+        public function getCategories()
+        {
+            return Categories::model()->findAll( array( 
+                                                    'select' => array( 'id', 'name' ),
+                                                    'condition'  => 'enabled = true', //Filtro para mostrar solo tipos de pagos habilitados
+                                               )
+                    );
         }
         
 }
