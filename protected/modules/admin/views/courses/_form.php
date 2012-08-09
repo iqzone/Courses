@@ -43,6 +43,12 @@
 		<?php echo CHtml::activeCheckBoxList($model,'payforms', CHtml::listData($model->getPayForms(), 'id', 'name'), array('size'=>50,'maxlength'=>50)); ?>
 		<?php echo $form->error($model,'payforms'); ?>
 	</div>
+        
+	<div class="row">
+		<?php echo $form->labelEx($model,'given_date'); ?>
+		<?php echo $form->textField($model, 'given_date', array('size'=>50,'maxlength'=>50, 'class' => 'datepicker')); ?>
+		<?php echo $form->error($model,'given_date'); ?>
+	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'enabled'); ?>

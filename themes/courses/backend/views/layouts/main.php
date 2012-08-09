@@ -18,6 +18,7 @@
         
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/main.css" />
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/form.css" />
+        <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/jquery-ui.css" />
 
 	<title><?php echo Yii::app()->name ?> - <?php echo Yii::t( 'global', 'administrator') ?></title>
 </head>

@@ -10,6 +10,7 @@
  * @property string $target
  * @property string $description
  * @property string $payforms
+ * @property string $given_date
  * @property integer $enabled
  * @property string $updated_at
  * @property string $created_at
@@ -20,7 +21,6 @@
  */
 class Courses extends CActiveRecord
 {
-        
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -53,6 +53,7 @@ class Courses extends CActiveRecord
 			array('name', 'length', 'max'=>140),
 			array('target', 'length', 'max'=>255),
 			array('payforms', 'length', 'max'=>50),
+                        array('given_date', 'date'),
 			array('updated_at, created_at', 'length', 'max'=>10),
 			array('description', 'safe'),
 			// The following rule is used by search().
@@ -86,6 +87,7 @@ class Courses extends CActiveRecord
 			'target' => 'Target',
 			'description' => 'Description',
 			'payforms' => 'Payforms',
+			'given_date' => 'Given Date',
 			'enabled' => 'Enabled',
 			'updated_at' => 'Updated At',
 			'created_at' => 'Created At',
@@ -109,6 +111,7 @@ class Courses extends CActiveRecord
 		$criteria->compare('target',$this->target,true);
 		$criteria->compare('description',$this->description,true);
 		$criteria->compare('payforms',$this->payforms,true);
+		$criteria->compare('given_date',$this->given_date,true);
 		$criteria->compare('enabled',$this->enabled);
 		$criteria->compare('updated_at',$this->updated_at,true);
 		$criteria->compare('created_at',$this->created_at,true);
@@ -117,6 +120,7 @@ class Courses extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+        
         
         public function beforeValidate() {
             //Si es un nuevo registro, entonces vamos a llenarlo con los datos de la fecha de creación
@@ -139,11 +143,30 @@ class Courses extends CActiveRecord
             {
                 $this->enabled = true;
             }
+            
             parent::init();
         }
         
+        public function afterFind() {
+            if( intval( $this->given_date ) == 0 )
+            {
+                $this->given_date = null;
+            }
+            else
+            {
+                $this->given_date = date( 'm/d/Y', $this->given_date );
+            }
+            
+            //$this->payforms = unserialize( $this->payforms );
+            
+            parent::afterFind();
+        }
+
+
         public function getPayForms()
         {
+            $this->payforms = unserialize( $this->payforms ); //Se añade por que sabemos que esta actualizando
+            
             return Payforms::model()->findAll( array( 
                                                     'select' => array( 'id', 'name' ),
                                                     'condition'  => 'enabled = true', //Filtro para mostrar solo tipos de pagos habilitados
@@ -160,4 +183,13 @@ class Courses extends CActiveRecord
                     );
         }
         
+        public function afterValidate() {
+            $this->given_date = strtotime($this->given_date);
+            parent::afterValidate();
+        }
+        
+        public function save($runValidation = true, $attributes = null) {
+            
+            return parent::save($runValidation, $attributes);
+        }
 }
