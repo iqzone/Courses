@@ -98,4 +98,13 @@ class Categories extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+        
+        public function getListClass()
+        {
+            return array(
+                        'hacking'       => 'hacking',
+                        'programming'   => 'programming',
+                        'mobile'        => 'mobile',
+            );
+        }
 }
