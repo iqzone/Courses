@@ -6,10 +6,21 @@ protected/data/*.db
 /index-test.php
 /index.php
 <<<<<<< HEAD
+<<<<<<< HEAD
 requirements/
 =======
 requirements
 >>>>>>> Roles
+=======
+<<<<<<< HEAD
+requirements/
+=======
+requirements
+>>>>>>> Roles
+=======
+requirements/
+>>>>>>> ValidarAcceso
+>>>>>>> Deliverable
 framework/
 demos/
 protected/config/*
@@ -17,6 +28,10 @@ protected/config/*
 nbproject/
 *.DS_Store*
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /.htaccess
 >>>>>>> Roles
+=======
+/.htaccess
+>>>>>>> Deliverable

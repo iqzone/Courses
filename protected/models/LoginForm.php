@@ -55,7 +55,7 @@ class LoginForm extends CFormModel
                         {
                                 $member = Members::model()->find( "username = '{$this->username}'" );
                                 
-                                if( $member->block >= 3 )
+                                if( $member->isLock() >= 3 )
                                 {
                                     
                                     $this->addError('username','Account block.');
@@ -89,7 +89,7 @@ class LoginForm extends CFormModel
 		{
 			$duration=$this->rememberMe ? 3600*24*30 : 0; // 30 days
 			Yii::app()->user->login($this->_identity,$duration);
-                        Members::model()->updateByPk($this->_identity->id, array( 'last_login_time' => time(), 'ip_address' => ip2long( CHttpRequest::getUserHostAddress() ) ));
+                        Members::model()->updateByPk($this->_identity->id, array( 'last_login_time' => time(), 'ip_address' => ip2long( Yii::app()->request->getUserHostAddress() ) ));
                         
                         
 			return true;

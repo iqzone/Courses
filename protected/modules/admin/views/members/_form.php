@@ -28,33 +28,9 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'pass_hash'); ?>
-		<?php echo $form->textField($model,'pass_hash',array('size'=>60,'maxlength'=>60)); ?>
-		<?php echo $form->error($model,'pass_hash'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'pass_salt'); ?>
-		<?php echo $form->textField($model,'pass_salt',array('size'=>20,'maxlength'=>20)); ?>
-		<?php echo $form->error($model,'pass_salt'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'updated_at'); ?>
-		<?php echo $form->textField($model,'updated_at',array('size'=>10,'maxlength'=>10)); ?>
-		<?php echo $form->error($model,'updated_at'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'created_at'); ?>
-		<?php echo $form->textField($model,'created_at',array('size'=>10,'maxlength'=>10)); ?>
-		<?php echo $form->error($model,'created_at'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'last_login_time'); ?>
-		<?php echo $form->textField($model,'last_login_time',array('size'=>10,'maxlength'=>10)); ?>
-		<?php echo $form->error($model,'last_login_time'); ?>
+		<?php echo $form->labelEx($model,'password'); ?>
+		<?php echo $form->textField($model,'password',array('size'=>60,'maxlength'=>60)); ?>
+		<?php echo $form->error($model,'password'); ?>
 	</div>
 
 	<div class="row buttons">
