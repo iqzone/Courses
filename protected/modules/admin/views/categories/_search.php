@@ -27,6 +27,11 @@
 	</div>
 
 	<div class="row">
+		<?php echo $form->label($model,'thumb'); ?>
+		<?php echo $form->textField($model,'thumb',array('size'=>50,'maxlength'=>50)); ?>
+	</div>
+
+	<div class="row">
 		<?php echo $form->label($model,'enabled'); ?>
 		<?php echo $form->textField($model,'enabled'); ?>
 	</div>
