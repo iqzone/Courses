@@ -41,7 +41,7 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'payforms'); ?>
-		<?php echo $form->textField($model,'payforms',array('size'=>50,'maxlength'=>50)); ?>
+		<?php echo CHtml::activeCheckBoxList($model,'payforms', CHtml::listData($model->getPayForms(), '', ''), array('size'=>50,'maxlength'=>50)); ?>
 		<?php echo $form->error($model,'payforms'); ?>
 	</div>
 
@@ -49,12 +49,6 @@
 		<?php echo $form->labelEx($model,'enabled'); ?>
 		<?php echo $form->checkbox($model,'enabled'); ?>
 		<?php echo $form->error($model,'enabled'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'updated_at'); ?>
-		<?php echo $form->textField($model,'updated_at',array('size'=>10,'maxlength'=>10)); ?>
-		<?php echo $form->error($model,'updated_at'); ?>
 	</div>
 
 	<div class="row buttons">
