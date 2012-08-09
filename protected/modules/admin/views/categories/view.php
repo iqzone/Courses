@@ -24,6 +24,7 @@ $this->menu=array(
 		'id',
 		'name',
 		'description',
+		'thumb',
 		'enabled',
 	),
 )); ?>

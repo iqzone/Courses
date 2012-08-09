@@ -17,6 +17,10 @@
 	<?php echo CHtml::encode($data->description); ?>
 	<br />
 
+	<b><?php echo CHtml::encode($data->getAttributeLabel('thumb')); ?>:</b>
+	<?php echo CHtml::encode($data->thumb); ?>
+	<br />
+
 	<b><?php echo CHtml::encode($data->getAttributeLabel('enabled')); ?>:</b>
 	<?php echo CHtml::encode($data->enabled); ?>
 	<br />

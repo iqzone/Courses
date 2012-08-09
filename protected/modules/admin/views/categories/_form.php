@@ -28,6 +28,12 @@
 	</div>
 
 	<div class="row">
+		<?php echo $form->labelEx($model,'thumb'); ?>
+		<?php echo $form->textField($model,'thumb',array('size'=>50,'maxlength'=>50)); ?>
+		<?php echo $form->error($model,'thumb'); ?>
+	</div>
+
+	<div class="row">
 		<?php echo $form->labelEx($model,'enabled'); ?>
 		<?php echo $form->checkbox($model,'enabled'); ?>
 		<?php echo $form->error($model,'enabled'); ?>
