@@ -11,7 +11,7 @@
         <div class='row course-container'>
             <div class='grid-12'>
                 <div class='grid-3 course-item'>
-                    <h3><i class="icon hacking"></i><a href="#"><?php echo CHtml::encode( $course->name ) ?></a></h3>
+                    <h3><i class="icon <?php echo $data->thumb ?>"></i><a href="#"><?php echo CHtml::encode( $course->name ) ?></a></h3>
                     <p><?php echo CHtml::encode( $course->target ) ?></p>
                 </div>
                 <div class="grid-8 course-description">
