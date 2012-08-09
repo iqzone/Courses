@@ -39,7 +39,7 @@
 
             <div id="header">
                 <div class="container">
-                    <h1 id="title"><a href="<?php echo CHtml::normalizeUrl( array( '/site/index' ) ) ?>"><?php echo CHtml::encode($this->pageTitle) ?></a></h1>
+                    <h1 id="title"><a href="<?php echo Yii::app()->homeUrl ?>"><?php echo CHtml::encode($this->pageTitle) ?></a></h1>
                     <h1 id="suggest-course"><i></i><?php echo CHtml::link(Yii::t('global', 'put_course'), array('/courses/create')) ?></h1>
                 </div><!-- container -->
             </div><!-- header -->
@@ -49,7 +49,7 @@
                     <?php
                     $this->widget('CMenuTheme', array(
                         'items' => array(
-                            array('label' => Yii::t('global', 'homepage'), 'url' => array('/site/index')),
+                            array('label' => Yii::t('global', 'homepage'), 'url' => Yii::app()->homeUrl),
                             array('label' => Yii::t('global', 'courses'), 'url' => array('/courses')),
                             array('label' => Yii::t('global', 'workshops'), 'url' => array('/workshops')),
                             array('label' => Yii::t('global', 'faq'), 'url' => array('/help')),
@@ -78,7 +78,7 @@
 
 
             <div class="content-footer">
-                <div class="logo"><div class="image"><a href="<?php echo CHtml::normalizeUrl(array('/site/index')) ?>"></a></div></div>
+                <div class="logo"><div class="image"><a href="<?php echo Yii::app()->homeUrl ?>"></a></div></div>
             </div><!-- /content-footer -->
             <div id="footer">
 
