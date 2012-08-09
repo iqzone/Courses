@@ -49,8 +49,28 @@ class LoginForm extends CFormModel
 		if(!$this->hasErrors())
 		{
 			$this->_identity=new UserIdentity($this->username,$this->password);
+                        
+                        
 			if(!$this->_identity->authenticate())
-				$this->addError('password','Incorrect username or password.');
+                        {
+                                $member = Members::model()->find( "username = '{$this->username}'" );
+                                
+                                if( $member->block >= 3 )
+                                {
+                                    
+                                    $this->addError('username','Account block.');
+                                }
+                                else
+                                {
+                                    $member->ip_address = ip2long( Yii::app()->request->getUserHostAddress() );
+                                    $member->last_login_time = time();
+                                    $member->block = intval( $member->block ) + 1;
+
+                                    $member->save();
+                                    
+                                    $this->addError('password','Incorrect username or password.');
+                                }
+                        }
 		}
 	}
 
@@ -69,6 +89,9 @@ class LoginForm extends CFormModel
 		{
 			$duration=$this->rememberMe ? 3600*24*30 : 0; // 30 days
 			Yii::app()->user->login($this->_identity,$duration);
+                        Members::model()->updateByPk($this->_identity->id, array( 'last_login_time' => time(), 'ip_address' => ip2long( CHttpRequest::getUserHostAddress() ) ));
+                        
+                        
 			return true;
 		}
 		else
