@@ -18,7 +18,7 @@ class AdminModule extends CWebModule
                 Yii::app()->setComponents(array(
                                             'errorHandler'=>array(
                                                     // use 'site/error' action to display errors
-                                                    'errorAction'=>'admin/default/error',
+                                                    'errorAction'=> '/admin/default/error',
                                             ),
                                             'user'               =>array
                                             (

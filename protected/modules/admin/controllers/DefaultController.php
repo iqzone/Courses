@@ -29,6 +29,10 @@ class DefaultController extends Controller
                                 'actions' => array( 'login' ),
                                 'users'   => array( '?' ),
                              ),
+                        array('allow',
+                                'actions' => array( 'error' ),
+                                'users'   => array('@'),
+                             ),
 			array('deny',  // deny all users
 				'users'=>array('*'),
 			),
@@ -45,6 +49,7 @@ class DefaultController extends Controller
 	 */
 	public function actionError()
 	{
+                $this->layout = false;
 		if($error=Yii::app()->errorHandler->error)
 		{
 			if(Yii::app()->request->isAjaxRequest)
