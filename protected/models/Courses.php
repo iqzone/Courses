@@ -163,16 +163,31 @@ class Courses extends CActiveRecord
         }
 
 
-        public function getPayForms()
+        public function getPayForms( $operation = 'get' )
         {
             $this->payforms = unserialize( $this->payforms ); //Se añade por que sabemos que esta actualizando
+            if( $operation == 'get')
+            {
+
+                $model = Payforms::model()->findAll( array( 
+                                                'select' => array( 'id', 'name' ),
+                                                'condition'  => 'enabled = true', //Filtro para mostrar solo tipos de pagos habilitados
+                                        )
+                );
+                
+            }
+            elseif($operation == 'infoByCriteria')
+            {
+                $model = Payforms::model()->findAll( array( 
+                                                'select' => array( 'id', 'name' ),
+                                                'condition'  => 'enabled = true AND id IN ( ' . join( ',', $this->payforms ) . ')', //Filtro para mostrar solo tipos de pagos habilitados
+                                        )
+                );
+            }
             
-            return Payforms::model()->findAll( array( 
-                                                    'select' => array( 'id', 'name' ),
-                                                    'condition'  => 'enabled = true', //Filtro para mostrar solo tipos de pagos habilitados
-                                               )
-                    );
+            return $model;
         }
+        
         
         public function getCategories()
         {

@@ -56,3 +56,5 @@ div.divider-news { margin-top: 20px; margin-bottom:20px; background:url(../image
 
 .suscribe-icon { background: url(../images/messages.png) no-repeat; width: 40px; height: 34px; display:block; float:left; margin-right: 10px; }
 .right-sidebar div { width: 191px; }
+
+.right-sidebar div a.payforms { padding:10px; width: 174px; text-align: left; margin-bottom: 10px; }
