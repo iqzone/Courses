@@ -55,3 +55,4 @@ form.contact input[type="submit"], form.suscribe input[type="submit"]{float:righ
 div.divider-news { margin-top: 20px; margin-bottom:20px; background:url(../images/divider-news-networks.png) no-repeat -3px 0px; height:7px; }
 
 .suscribe-icon { background: url(../images/messages.png) no-repeat; width: 40px; height: 34px; display:block; float:left; margin-right: 10px; }
+.right-sidebar div { width: 191px; }
