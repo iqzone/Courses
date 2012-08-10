@@ -2,9 +2,11 @@
 /* @var $this CoursesController */
 /* @var $dataProvider CActiveDataProvider */
 
-$this->breadcrumbs=array(
-	'Courses',
-);
+$this->widget('application.components.CCBreadcrumbs', array(
+                                      'links' => array(
+                                                'Cursos' => array( 'url' => array( 'courses' ), 'isActive' => 'active') ,
+                                      ),
+)); 
 
 $this->menu=array(
 	array('label'=>'Create Courses', 'url'=>array('create')),

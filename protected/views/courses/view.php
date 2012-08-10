@@ -2,34 +2,27 @@
 /* @var $this CoursesController */
 /* @var $model Courses */
 
-$this->breadcrumbs=array(
-	'Courses'=>array('index'),
-	$model->name,
-);
 
-$this->menu=array(
-	array('label'=>'List Courses', 'url'=>array('index')),
-	array('label'=>'Create Courses', 'url'=>array('create')),
-	array('label'=>'Update Courses', 'url'=>array('update', 'id'=>$model->id)),
-	array('label'=>'Delete Courses', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
-	array('label'=>'Manage Courses', 'url'=>array('admin')),
-);
+$this->widget('application.components.CCBreadcrumbs', array(
+                                      'links' => array(
+                                                	'Courses'=>array('index'),
+                                                        $model->name,
+                                      ),
+)); 
+
 ?>
 
-<h1>View Courses #<?php echo $model->id; ?></h1>
+<h2 class="alert alert-info"><?php echo CHtml::encode( $model->name ); ?></h2>
 
-<?php $this->widget('zii.widgets.CDetailView', array(
-	'data'=>$model,
-	'attributes'=>array(
-		'id',
-		'category_id',
-		'name',
-		'target',
-		'description',
-		'payforms',
-		'given_date',
-		'enabled',
-		'updated_at',
-		'created_at',
-	),
-)); ?>
+<div class="grid-8">
+    <div class="well">
+        <h5>Objetivo</h5>
+        <p><?php echo $model->target ?></p>
+        
+        <h5>Descripción</h5>
+        <p><?php echo $model->description ?></p>
+        <fieldset>
+            <legend>Acerca del instructor</legend>
+        </fieldset>
+    </div>
+</div>

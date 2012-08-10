@@ -18,7 +18,7 @@
                     <h4>Descripción:</h4>
                     <p><?php echo CHtml::encode( $course->description ) ?></p>
                     <div class="buttons-buy">
-                        <div class='grid-1'><?php echo CHtml::link( '&nbsp;&nbsp;Ver más', array( '/' ), array( 'class' => 'icon-plus' ) ) ?></div>
+                        <div class='grid-1'><?php echo CHtml::link( '&nbsp;&nbsp;Ver más', array( 'courses/view', 'id' => $course->id ), array( 'class' => 'icon-plus' ) ) ?></div>
                         <div class='grid-1'><?php echo CHtml::link( '&nbsp;&nbsp;Comprar', array( '/' ), array( 'class' => 'icon-credit-card' ) ) ?></div>
                     </div>
                 </div>
