@@ -204,7 +204,6 @@ class Courses extends CActiveRecord
         }
         
         public function save($runValidation = true, $attributes = null) {
-            
             return parent::save($runValidation, $attributes);
         }
 }

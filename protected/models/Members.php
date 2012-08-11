@@ -167,4 +167,12 @@ class Members extends CActiveRecord
                 $this->pass_salt =  base_convert(mt_rand(), 10, 36);
                 $this->pass_hash = md5( md5( $this->password ) . md5( $this->pass_salt ) );
         }
+        
+        public static function getAll( $type = 'instructors' )
+        {
+            if( $type == 'instructors' )
+            {
+                return Members::model()->findAll( array( 'select' => array( 'id', 'name' ) ) );
+            }
+        }
 }

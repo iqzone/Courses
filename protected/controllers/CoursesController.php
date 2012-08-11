@@ -32,7 +32,7 @@ class CoursesController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
+				'actions'=>array('create','update', 'buy'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -127,6 +127,11 @@ class CoursesController extends Controller
 			'dataProvider'=>$dataProvider,
 		));
 	}
+        
+        public function actionBuy()
+        {
+            $this->render( 'buy', array() );
+        }
 
 	/**
 	 * Manages all models.

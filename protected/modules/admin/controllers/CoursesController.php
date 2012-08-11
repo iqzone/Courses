@@ -55,6 +55,7 @@ class CoursesController extends Controller
 	public function actionCreate()
 	{
 		$model=new Courses;
+                $model->courseMemberRoles = new CourseMemberRole;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
@@ -63,7 +64,9 @@ class CoursesController extends Controller
 		{
 			$model->attributes=$_POST['Courses'];
 			if($model->save())
+                        {
 				$this->redirect(array('view','id'=>$model->id));
+                        }
 		}
 
 		$this->render('create',array(
@@ -79,6 +82,7 @@ class CoursesController extends Controller
 	public function actionUpdate($id)
 	{
 		$model=$this->loadModel($id);
+                $model->courseMemberRoles = new CourseMemberRole;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
@@ -87,7 +91,18 @@ class CoursesController extends Controller
 		{
 			$model->attributes=$_POST['Courses'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+                        {
+                                if(isset($_POST['CourseMemberRole']))
+                                {
+                                    foreach($_POST['CourseMemberRole']['member_id'] as $course)
+                                    {
+                                        $model->courseMemberRoles->setAttributes( array( 'member_id' => $course, 'course_id' => $model->id, 'role' => 'members' ) );
+                                        $model->courseMemberRoles->save();
+                                    }
+                                    
+                                    $this->redirect(array('view','id'=>$model->id));
+                                }
+                        }
 		}
 
 		$this->render('update',array(
@@ -160,4 +175,5 @@ class CoursesController extends Controller
 			Yii::app()->end();
 		}
 	}
+        
 }
