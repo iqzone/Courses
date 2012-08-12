@@ -39,10 +39,14 @@
 		<?php echo $form->error($model,'description'); ?>
 	</div>
         
-        <div class="">
-		<?php echo $form->labelEx($model,'courseMemberRoles'); ?>
-                <?php echo $form->dropDownList($model->courseMemberRoles,'member_id', CHtml::listData( Members::getAll(), 'id', 'name' ), array('size' => 5, 'multiple' => true)); ?>
+        <div>
+            <span class="label label-info">Instructores</span>
+            <?php echo CHtml::link('Añadir', 'javascript:void()', array( '' ) ) ?>
+            <div class="">
+                <?php echo $form->dropDownList($model->courseMemberRoles, 'member_id', CHtml::listData(Members::getAll(), 'id', 'name'), array('size'=>1,'maxlength'=>50)); ?>
+            </div>
         </div>
+        <br />
 
 	<div class="">
 		<?php echo $form->labelEx($model,'payforms'); ?>

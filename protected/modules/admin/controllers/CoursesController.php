@@ -82,7 +82,6 @@ class CoursesController extends Controller
 	public function actionUpdate($id)
 	{
 		$model=$this->loadModel($id);
-                $model->courseMemberRoles = new CourseMemberRole;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
@@ -90,18 +89,11 @@ class CoursesController extends Controller
 		if(isset($_POST['Courses']))
 		{
 			$model->attributes=$_POST['Courses'];
+                        $model->courseMemberRoles = $_POST['CourseMemberRole'];
+                        
 			if($model->save())
-                        {
-                                if(isset($_POST['CourseMemberRole']))
-                                {
-                                    foreach($_POST['CourseMemberRole']['member_id'] as $course)
-                                    {
-                                        $model->courseMemberRoles->setAttributes( array( 'member_id' => $course, 'course_id' => $model->id, 'role' => 'members' ) );
-                                        $model->courseMemberRoles->save();
-                                    }
-                                    
+                        {                                   
                                     $this->redirect(array('view','id'=>$model->id));
-                                }
                         }
 		}
 
@@ -158,6 +150,11 @@ class CoursesController extends Controller
 	public function loadModel($id)
 	{
 		$model=Courses::model()->findByPk($id);
+                if( ! ( $model->courseMemberRoles = CourseMemberRole::model()->findByAttributes( array( 'course_id' => $id ) ) ) )
+                {
+                    $model->courseMemberRoles = new CourseMemberRole;
+                }
+                
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;

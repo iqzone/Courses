@@ -21,6 +21,7 @@
  */
 class Courses extends CActiveRecord
 {
+        public $courseMemberRoles;
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -204,6 +205,14 @@ class Courses extends CActiveRecord
         }
         
         public function save($runValidation = true, $attributes = null) {
+            if( $this->courseMemberRoles )
+            {
+                CourseMemberRole::model()->deleteAll('course_id = ' . $this->id );//Borramos instructores asignados a este curso
+                
+                $courseMembersRoles = new CourseMemberRole;
+                $courseMembersRoles->setAttributes( array( 'course_id' => $this->id, 'member_id' => $this->courseMemberRoles['member_id'], 'role' => 'members' ) );
+                $courseMembersRoles->save();
+            }
             return parent::save($runValidation, $attributes);
         }
 }
