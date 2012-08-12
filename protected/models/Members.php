@@ -175,4 +175,9 @@ class Members extends CActiveRecord
                 return Members::model()->findAll( array( 'select' => array( 'id', 'name' ) ) );
             }
         }
+        
+        public static function getUserRoleOptions()
+        {
+            return CHtml::listData( Yii::app()->authManager->getOperations(), 'name', 'name' );
+        }
 }

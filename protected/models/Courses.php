@@ -205,14 +205,15 @@ class Courses extends CActiveRecord
         }
         
         public function save($runValidation = true, $attributes = null) {
+            $save = parent::save($runValidation, $attributes);
             if( $this->courseMemberRoles )
             {
                 CourseMemberRole::model()->deleteAll('course_id = ' . $this->id );//Borramos instructores asignados a este curso
                 
                 $courseMembersRoles = new CourseMemberRole;
-                $courseMembersRoles->setAttributes( array( 'course_id' => $this->id, 'member_id' => $this->courseMemberRoles['member_id'], 'role' => 'members' ) );
+                $courseMembersRoles->setAttributes( array( 'course_id' => $this->id, 'member_id' => $this->courseMemberRoles['member_id'], 'role' => 'instructors' ) );
                 $courseMembersRoles->save();
             }
-            return parent::save($runValidation, $attributes);
+            return $save;
         }
 }

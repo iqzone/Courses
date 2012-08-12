@@ -63,6 +63,8 @@ class CoursesController extends Controller
 		if(isset($_POST['Courses']))
 		{
 			$model->attributes=$_POST['Courses'];
+                        $model->courseMemberRoles = $_POST['CourseMemberRole'];
+                        
 			if($model->save())
                         {
 				$this->redirect(array('view','id'=>$model->id));

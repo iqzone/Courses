@@ -173,6 +173,7 @@
 					<ul class="dropdown-menu">
                                                 <li><a href="<?php echo CHtml::normalizeUrl( array( '/admin/places/' ) ) ?>"><?php echo Yii::t( 'global', 'places' ) ?></a></li>
                                                 <li><a href="<?php echo CHtml::normalizeUrl( array( '/admin/members/' ) ) ?>"><?php echo Yii::t( 'global', 'members' ) ?></a></li>
+                                                <li><a href="<?php echo CHtml::normalizeUrl( array( '/admin/roles/' ) ) ?>"><?php echo Yii::t( 'global', 'roles' ) ?></a></li>
 					</ul>
 				</li>
 			
@@ -190,7 +191,13 @@
 	<div class="main-inner">
 
 	    <div class="container">
-	      <?php echo $content; ?>
+                <?php if(Yii::app()->user->hasFlash('success')):?>
+                <div class="alert alert-info">
+                    <?php echo Yii::app()->user->getFlash('success'); ?>
+                </div>
+                <?php endif; ?>
+                
+                <?php echo $content; ?>
 	    </div> <!-- /container -->
 	    
 	</div> <!-- /main-inner -->
