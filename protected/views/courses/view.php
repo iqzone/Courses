@@ -27,8 +27,7 @@ $this->widget('application.components.CCBreadcrumbs', array(
                         </fieldset>
                     </div>
                     <div class="grid-7">
-                        <fieldset>
-                            <legend>Descripción</legend>
+                            <h3>Descripción</h3>
                             <div class="grid-7 course-description">
                                 <img class="thumbnail" align="left" src="<?php echo Yii::app()->baseUrl . '/images/courses/maps/' . $model->placePicture ?>" width="100" />
                                 <p class="description"><?php echo $model->description ?></p>
@@ -36,7 +35,6 @@ $this->widget('application.components.CCBreadcrumbs', array(
                             <fieldset>
                                 <legend>Acerca del instructor</legend>
                             </fieldset>
-                        </fieldset>
                     </div>
                 </div>
             </div>

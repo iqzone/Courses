@@ -5,33 +5,12 @@ protected/runtime/*
 protected/data/*.db
 /index-test.php
 /index.php
-<<<<<<< HEAD
-<<<<<<< HEAD
 requirements/
-=======
-requirements
->>>>>>> Roles
-=======
-<<<<<<< HEAD
-requirements/
-=======
-requirements
->>>>>>> Roles
-=======
-requirements/
->>>>>>> ValidarAcceso
->>>>>>> Deliverable
 framework/
 demos/
 protected/config/*
 !protected/config/*.conf
 nbproject/
 *.DS_Store*
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 /.htaccess
->>>>>>> Roles
-=======
-/.htaccess
->>>>>>> Deliverable
+/images/courses/maps/*
