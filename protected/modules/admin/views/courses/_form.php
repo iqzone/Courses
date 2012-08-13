@@ -40,9 +40,8 @@
 	</div>
         
         <div>
-            <span class="label label-info">Instructores</span>
-            <?php echo CHtml::link('Añadir', 'javascript:void()', array( '' ) ) ?>
             <div class="">
+                <label for="CourseMemberRole_member_id">Instructor</label>
                 <?php echo $form->dropDownList($model->courseMemberRoles, 'member_id', CHtml::listData(Members::getAll(), 'id', 'name'), array('size'=>1,'maxlength'=>50)); ?>
             </div>
         </div>
@@ -56,7 +55,7 @@
         
 	<div class="">
 		<?php echo $form->labelEx($model,'given_date'); ?>
-		<?php echo $form->textField($model, 'given_date', array('size'=>50,'maxlength'=>50, 'class' => 'datepicker')); ?>
+		<?php echo $form->textField($model, 'given_date', array('size'=>50,'maxlength'=>50, 'class' => 'datepicker', 'autocomplete' => 'off')); ?>
 		<?php echo $form->error($model,'given_date'); ?>
 	</div>
 
