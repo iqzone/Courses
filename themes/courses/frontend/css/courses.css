@@ -58,3 +58,10 @@ div.divider-news { margin-top: 20px; margin-bottom:20px; background:url(../image
 .right-sidebar div { width: 191px; }
 
 .right-sidebar div a.payforms { padding:10px; width: 174px; text-align: left; margin-bottom: 10px; }
+
+
+.course-description .thumbnail { margin-right: 10px; }
+
+.course-description { margin-left: 0px; }
+
+.course-description .description {  }

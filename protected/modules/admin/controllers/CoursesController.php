@@ -69,7 +69,8 @@ class CoursesController extends Controller
                         
 			if($model->save())
                         {
-                                $model->image->saveAs('path/to/localFile');
+                                $model->placePicture->saveAs( Yii::getPathOfAlias('webroot.images.courses.maps') . DIRECTORY_SEPARATOR . $model->placePicture->name );
+                                
 				$this->redirect(array('view','id'=>$model->id));
                         }
 		}

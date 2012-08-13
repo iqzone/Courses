@@ -12,21 +12,34 @@ $this->widget('application.components.CCBreadcrumbs', array(
 
 ?>
 
-
 <div class="row">
     <div class="grid-8">
         <div class="well">
-            <fieldset>
-                <legend><b><?php echo CHtml::encode( $model->name ); ?></b></legend>
-                <h5>Objetivo</h5>
-                <p><?php echo $model->target ?></p>
-
-                <h5>Descripción</h5>
-                <p><?php echo $model->description ?></p>
-                <fieldset>
-                    <legend>Acerca del instructor</legend>
-                </fieldset>
-            </fieldset>
+            <div class="row">
+                <div class="grid-7">
+                    <div class="grid-7">
+                        <fieldset>
+                            <legend><b><?php echo CHtml::encode($model->name); ?></b></legend>
+                            <div class="grid-7">
+                                <h3>Objetivo</h3>
+                                <p><?php echo $model->target ?></p>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div class="grid-7">
+                        <fieldset>
+                            <legend>Descripción</legend>
+                            <div class="grid-7 course-description">
+                                <img class="thumbnail" align="left" src="<?php echo Yii::app()->baseUrl . '/images/courses/maps/' . $model->placePicture ?>" width="100" />
+                                <p class="description"><?php echo $model->description ?></p>
+                            </div>
+                            <fieldset>
+                                <legend>Acerca del instructor</legend>
+                            </fieldset>
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <div class="grid-3 right-sidebar">

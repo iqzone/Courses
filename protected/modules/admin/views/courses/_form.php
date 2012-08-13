@@ -48,7 +48,7 @@
 	</div>
         
 	<div class="">
-            <?php echo $model->placePicture; ?>
+                <img src="<?php echo Yii::app()->baseUrl . '/images/courses/maps/' . $model->placePicture; ?>" width="400" />
 		<?php echo $form->labelEx($model,'placePicture'); ?>
 		<?php echo $form->fileField($model,'placePicture'); ?>
 		<?php echo $form->error($model,'placePicture'); ?>
