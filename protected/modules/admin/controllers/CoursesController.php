@@ -63,10 +63,13 @@ class CoursesController extends Controller
 		if(isset($_POST['Courses']))
 		{
 			$model->attributes=$_POST['Courses'];
+                        $model->placePicture=CUploadedFile::getInstance($model,'placePicture');
+                        
                         $model->courseMemberRoles = $_POST['CourseMemberRole'];
                         
 			if($model->save())
                         {
+                                $model->image->saveAs('path/to/localFile');
 				$this->redirect(array('view','id'=>$model->id));
                         }
 		}
@@ -91,10 +94,13 @@ class CoursesController extends Controller
 		if(isset($_POST['Courses']))
 		{
 			$model->attributes=$_POST['Courses'];
+                        $model->placePicture=CUploadedFile::getInstance($model,'placePicture');
+                        
                         $model->courseMemberRoles = $_POST['CourseMemberRole'];
                         
 			if($model->save())
-                        {                                   
+                        {                         
+                                    $model->placePicture->saveAs( Yii::getPathOfAlias('webroot.images.courses.maps') . DIRECTORY_SEPARATOR . $model->placePicture->name );
                                     $this->redirect(array('view','id'=>$model->id));
                         }
 		}

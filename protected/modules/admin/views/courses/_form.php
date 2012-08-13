@@ -9,7 +9,7 @@
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'courses-form',
 	'enableAjaxValidation'=>false,
-        'htmlOptions'       => array( 'class' => 'well' ),
+        'htmlOptions'       => array( 'class' => 'well', 'enctype' => 'multipart/form-data' ),
 )); ?>
 
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
@@ -38,6 +38,22 @@
 		<?php echo $form->textArea($model,'description',array('rows'=>3, 'cols'=>50)); ?>
 		<?php echo $form->error($model,'description'); ?>
 	</div>
+        
+	<div class="">
+                <div id="map_canvas" style="width:300px; height:300px"></div>
+                <?php echo $form->hiddenField($model,'latLng'); ?>
+		<?php echo $form->labelEx($model,'place'); ?>
+		<?php echo $form->textArea($model,'place',array('rows'=>3, 'cols'=>50)); ?>
+		<?php echo $form->error($model,'place'); ?>
+	</div>
+        
+	<div class="">
+            <?php echo $model->placePicture; ?>
+		<?php echo $form->labelEx($model,'placePicture'); ?>
+		<?php echo $form->fileField($model,'placePicture'); ?>
+		<?php echo $form->error($model,'placePicture'); ?>
+	</div>
+        
         
         <div>
             <div class="">

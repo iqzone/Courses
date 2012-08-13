@@ -11,6 +11,7 @@
  * @property string $description
  * @property string $payforms
  * @property string $given_date
+ * @property string $place
  * @property integer $enabled
  * @property string $updated_at
  * @property string $created_at
@@ -21,7 +22,9 @@
  */
 class Courses extends CActiveRecord
 {
-        public $courseMemberRoles;
+        public $latLng;
+        public $placePicture;
+        
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -48,18 +51,17 @@ class Courses extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('category_id, name, created_at', 'required'),
+			array('category_id, name, place, created_at, latLng', 'required'),
 			array('enabled', 'numerical', 'integerOnly'=>true),
 			array('category_id', 'length', 'max'=>11),
 			array('name', 'length', 'max'=>140),
 			array('target', 'length', 'max'=>255),
 			array('payforms', 'length', 'max'=>50),
-                        array('given_date', 'date'),
-			array('updated_at, created_at', 'length', 'max'=>10),
+			array('given_date, updated_at, created_at', 'length', 'max'=>10),
 			array('description', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, category_id, name, target, description, payforms, enabled, updated_at, created_at', 'safe', 'on'=>'search'),
+			array('id, category_id, name, target, description, payforms, given_date, place, enabled, updated_at, created_at', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -89,6 +91,7 @@ class Courses extends CActiveRecord
 			'description' => 'Description',
 			'payforms' => 'Payforms',
 			'given_date' => 'Given Date',
+			'place' => 'Place',
 			'enabled' => 'Enabled',
 			'updated_at' => 'Updated At',
 			'created_at' => 'Created At',
@@ -113,6 +116,7 @@ class Courses extends CActiveRecord
 		$criteria->compare('description',$this->description,true);
 		$criteria->compare('payforms',$this->payforms,true);
 		$criteria->compare('given_date',$this->given_date,true);
+		$criteria->compare('place',$this->place,true);
 		$criteria->compare('enabled',$this->enabled);
 		$criteria->compare('updated_at',$this->updated_at,true);
 		$criteria->compare('created_at',$this->created_at,true);
@@ -121,7 +125,7 @@ class Courses extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
-        
+
         
         public function beforeValidate() {
             //Si es un nuevo registro, entonces vamos a llenarlo con los datos de la fecha de creación
@@ -158,7 +162,14 @@ class Courses extends CActiveRecord
                 $this->given_date = date( 'm/d/Y', $this->given_date );
             }
             
+            
             //$this->payforms = unserialize( $this->payforms );
+            
+            $placeTmp = unserialize( $this->place );
+            
+            $this->place = @$placeTmp[ 'description' ];
+            $this->latLng = @$placeTmp[ 'latLng' ];
+            $this->placePicture = @$placeTmp[ 'placePicture' ];
             
             parent::afterFind();
         }
@@ -167,6 +178,8 @@ class Courses extends CActiveRecord
         public function getPayForms( $operation = 'get' )
         {
             $this->payforms = unserialize( $this->payforms ); //Se añade por que sabemos que esta actualizando
+            
+            
             if( $operation == 'get')
             {
 
@@ -205,6 +218,8 @@ class Courses extends CActiveRecord
         }
         
         public function save($runValidation = true, $attributes = null) {
+            $this->place = serialize( array( 'description' => $this->place, 'latLng' => $this->latLng, 'placePicture' => $this->placePicture ) );
+            
             $save = parent::save($runValidation, $attributes);
             if( $this->courseMemberRoles )
             {
