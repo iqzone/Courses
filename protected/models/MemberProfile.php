@@ -8,6 +8,8 @@
  * @property string $member_id
  * @property string $picture
  * @property string $picture_thumb
+ * @property string $curriculum
+ * @property string $biography
  * @property string $extra_info
  *
  * The followings are the available model relations:
@@ -49,13 +51,16 @@ class MemberProfile extends CActiveRecord
 		return array(
 			array('member_id', 'length', 'max'=>11),
                         array( 'twitter', 'match', 'pattern' => '/^@([A-Za-z0-9_]+)/i' ),
+                        array( 'curriculum', 'file', 'types'=>'doc, docx, pdf', 'allowEmpty' => true),
+                        array( 'picture', 'file', 'types'=>'jpg, gif, png', 'allowEmpty' => true),
                         array( 'linkedin, website', 'url'),
                         array( 'msn', 'email'),
                         array( 'gtalk', 'length', 'max' => 255 ),
 			array('picture, picture_thumb', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, member_id, picture, picture_thumb, extra_info, gtalk', 'safe', 'on'=>'search'),
+			array('id, member_id, picture_thumb, biography, extra_info, gtalk', 'safe', 'on'=>'search'),
+                        array( 'curriculum, picture', 'unsafe'),
 		);
 	}
 
@@ -81,6 +86,8 @@ class MemberProfile extends CActiveRecord
 			'member_id' => 'Member',
 			'picture' => 'Picture',
 			'picture_thumb' => 'Picture Thumb',
+			'curriculum' => 'Curriculum',
+			'biography' => 'Biography',
 			'extra_info' => 'Extra Info',
 		);
 	}
@@ -100,6 +107,8 @@ class MemberProfile extends CActiveRecord
 		$criteria->compare('member_id',$this->member_id,true);
 		$criteria->compare('picture',$this->picture,true);
 		$criteria->compare('picture_thumb',$this->picture_thumb,true);
+		$criteria->compare('curriculum',$this->curriculum,true);
+		$criteria->compare('biography',$this->biography,true);
 		$criteria->compare('extra_info',$this->extra_info,true);
 
 		return new CActiveDataProvider($this, array(
@@ -113,6 +122,15 @@ class MemberProfile extends CActiveRecord
         
         public function save($runValidation = true, $attributes = null) {
             $this->extra_info = serialize( array( 'gtalk' => $this->gtalk, 'msn' => $this->msn, 'twitter' => $this->twitter, 'linkedin' => $this->linkedin, 'website' => $this->website ) );
+            $this->curriculum=CUploadedFile::getInstance($this,'curriculum');
+            $this->picture=CUploadedFile::getInstance($this,'picture');
+            
+            if($this->curriculum)
+                $this->curriculum->saveAs( Yii::getPathOfAlias('webroot.uploads.curriculums') . DIRECTORY_SEPARATOR . $this->curriculum->name );
+            
+            if($this->picture)
+                $this->picture->saveAs( Yii::getPathOfAlias('webroot.uploads.avatars') . DIRECTORY_SEPARATOR . $this->picture->name );
+            
             return parent::save($runValidation, $attributes);
         }
         

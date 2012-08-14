@@ -67,7 +67,9 @@ class MembersController extends Controller
 		if(isset($_POST['Members']))
 		{
 			$model->attributes=$_POST['Members'];
+                        
                         $model->memberProfile = $_POST['MemberProfile'];
+                        
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}

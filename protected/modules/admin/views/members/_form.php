@@ -9,6 +9,7 @@
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'members-form',
 	'enableAjaxValidation'=>false,
+        'htmlOptions'       => array( 'class' => 'well', 'enctype' => 'multipart/form-data' ),
 )); ?>
 
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
@@ -39,6 +40,18 @@
 		<?php echo $form->fileField($model->memberProfile,'picture'); ?>
 		<?php echo $form->error($model->memberProfile,'picture'); ?>
 	</div>
+        
+        <div class="row">
+            <?php echo $form->labelEx($model->memberProfile,'curriculum'); ?>
+            <?php echo $form->fileField($model->memberProfile,'curriculum'); ?>
+            <?php echo $form->error($model->memberProfile,'curriculum'); ?>
+        </div>
+        
+        <div class="row">
+            <?php echo $form->labelEx($model->memberProfile,'biography'); ?>
+            <?php echo $form->textArea($model->memberProfile,'biography'); ?>
+            <?php echo $form->error($model->memberProfile,'biography'); ?>
+        </div>
         
         <div class="controls">
             <?php echo $form->labelEx($model->memberProfile,'twitter'); ?>
