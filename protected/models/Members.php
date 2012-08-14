@@ -21,6 +21,7 @@
 class Members extends CActiveRecord
 {
         public $password = null;
+        public $memberProfile;
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -140,6 +141,7 @@ class Members extends CActiveRecord
             }
             
             
+            
             return parent::beforeValidate();
         }
         
@@ -179,5 +181,27 @@ class Members extends CActiveRecord
         public static function getUserRoleOptions()
         {
             return CHtml::listData( Yii::app()->authManager->getOperations(), 'name', 'name' );
+        }
+        
+        public function save($runValidation = true, $attributes = null) {
+            
+            $return = false;
+            $isValid = $this->validate();
+            
+            if( Yii::app()->authManager->checkAccess( 'instructors', Yii::app()->user->id ) )
+                if( ! $this->memberProfile->validate() )
+                {
+                    return false;
+                }
+                elseif( $isValid )
+                {
+                    $return = parent::save($runValidation, $attributes); //Es valido procedemos a guardar a MemberProfile
+                    
+                    $this->memberProfile->member_id = $this->id;
+                    
+                    $this->memberProfile->save();
+                }
+                
+            return $return;
         }
 }

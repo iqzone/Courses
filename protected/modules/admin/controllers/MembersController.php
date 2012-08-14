@@ -59,6 +59,7 @@ class MembersController extends Controller
                 $auth = Yii::app()->authManager;
                 $auth->assign( 'administrator', $member->id );exit;*/
 		$model=new Members;
+                $model->memberProfile = new MemberProfile;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
@@ -66,6 +67,7 @@ class MembersController extends Controller
 		if(isset($_POST['Members']))
 		{
 			$model->attributes=$_POST['Members'];
+                        $model->memberProfile = $_POST['MemberProfile'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -90,6 +92,8 @@ class MembersController extends Controller
 		if(isset($_POST['Members']))
 		{
 			$model->attributes=$_POST['Members'];
+                        $model->memberProfile->attributes = $_POST['MemberProfile'];
+                        
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -147,6 +151,12 @@ class MembersController extends Controller
 	public function loadModel($id)
 	{
 		$model=Members::model()->findByPk($id);
+                if( ! ( $model->memberProfile = MemberProfile::model()->findByAttributes( array( 'member_id' => $id) ) ) )
+                {
+                    $model->memberProfile = new MemberProfile;
+                }
+                
+                
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
