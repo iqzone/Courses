@@ -37,8 +37,13 @@ $this->widget('application.components.CCBreadcrumbs', array(
                             </div>
                             <fieldset>
                                 <legend>Acerca del instructor</legend>
-                                <?php echo CHtml::image( Yii::app()->baseUrl . '/uploads/avatars/' . $model->courseMemberRoles->member->profile->picture, $model->courseMemberRoles->member->name, array("class" => "thumbnail", "title" => $model->courseMemberRoles->member->name, 'width'=>'200', 'align' => 'left' )); ?>
-                                <p><?php echo $model->courseMemberRoles->member->profile->biography ?></p>
+                                <?php echo CHtml::image( Yii::app()->baseUrl . '/uploads/avatars/' . $model->courseMemberRoles->member->profile->picture, $model->courseMemberRoles->member->name, array("class" => "thumbnail course-biography", "title" => $model->courseMemberRoles->member->name, 'width'=>'100', 'align' => 'left' )); ?>
+                                <p class=""><?php echo $model->courseMemberRoles->member->profile->biography ?></p>
+                                <p>
+                                    <?php if($model->courseMemberRoles->member->profile->curriculum!=''): ?>
+                                    <a href="<?php echo Yii::app()->baseUrl . '/uploads/curriculums/' . $model->courseMemberRoles->member->profile->curriculum ?>">Descargar Curriculum</a>
+                                    <?php endif ?>
+                                </p>
                             </fieldset>
                     </div>
                 </div>
