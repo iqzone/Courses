@@ -69,6 +69,7 @@ class Members extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'courseUserRoles' => array(self::HAS_MANY, 'CourseUserRole', 'user_id'),
+                        'profile' => array(self::HAS_ONE, 'MemberProfile', 'member_id'),
 		);
 	}
 

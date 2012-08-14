@@ -37,6 +37,8 @@ $this->widget('application.components.CCBreadcrumbs', array(
                             </div>
                             <fieldset>
                                 <legend>Acerca del instructor</legend>
+                                <?php echo CHtml::image( Yii::app()->baseUrl . '/uploads/avatars/' . $model->courseMemberRoles->member->profile->picture, $model->courseMemberRoles->member->name, array("class" => "thumbnail", "title" => $model->courseMemberRoles->member->name, 'width'=>'200', 'align' => 'left' )); ?>
+                                <p><?php echo $model->courseMemberRoles->member->profile->biography ?></p>
                             </fieldset>
                     </div>
                 </div>

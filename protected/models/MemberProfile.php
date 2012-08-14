@@ -56,10 +56,11 @@ class MemberProfile extends CActiveRecord
                         array( 'linkedin, website', 'url'),
                         array( 'msn', 'email'),
                         array( 'gtalk', 'length', 'max' => 255 ),
+                        array( 'biography', 'length', 'min' => 50 ),
 			array('picture, picture_thumb', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, member_id, picture_thumb, biography, extra_info, gtalk', 'safe', 'on'=>'search'),
+			array('id, member_id, picture_thumb, extra_info, gtalk', 'safe', 'on'=>'search'),
                         array( 'curriculum, picture', 'unsafe'),
 		);
 	}
