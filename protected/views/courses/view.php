@@ -11,6 +11,9 @@ $this->widget('application.components.CCBreadcrumbs', array(
 )); 
 
 ?>
+<script type="text/javascript">
+    var latLngs = '<?php echo $model->latLng ?>';
+</script>
 
 <div class="row">
     <div class="grid-8">
@@ -29,7 +32,7 @@ $this->widget('application.components.CCBreadcrumbs', array(
                     <div class="grid-7">
                             <h3>Descripción</h3>
                             <div class="grid-7 course-description">
-                                <img class="thumbnail" align="left" src="<?php echo Yii::app()->baseUrl . '/images/courses/maps/' . $model->placePicture ?>" width="100" />
+                                <?php if($model->placePicture != ''): ?><img class="thumbnail" align="left" src="<?php echo Yii::app()->baseUrl . '/images/courses/maps/' . $model->placePicture ?>" width="100" /><?php endif ?>
                                 <p class="description"><?php echo $model->description ?></p>
                             </div>
                             <fieldset>
@@ -49,11 +52,20 @@ $this->widget('application.components.CCBreadcrumbs', array(
                 <?php endforeach; ?>
             </fieldset>
         </div>
-        <div class="clear"><br /></div>
+        <div class="clear"></div>
         <div class="well">
             <fieldset>
                 <legend style="font-size: 14px;">Descargas</legend>
             </fieldset>
         </div>
+        <?php if( $model->latLng != '' ): ?>
+        <div class="clear"></div>
+        <div class="well">
+            <fieldset>
+                <legend style="font-size: 14px;">Mapa</legend>
+                <div id="map_canvas" style="width:200px; height:200px"></div>
+            </fieldset>
+        </div>
+        <?php endif ?>
     </div>
 </div>
